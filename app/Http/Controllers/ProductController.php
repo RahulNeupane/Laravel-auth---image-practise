@@ -15,7 +15,27 @@ class ProductController extends Controller
         return view('add-product');
     }
 
+    public function saveProduct(Request $request){
+        // validating the form
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+        ]);
+    }
+
     public function editProduct(){
         return view('edit-product');
+    }
+
+    public function updateProduct(Request $request){
+        // validating the form
+        $request->validate([
+            'name' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            'image' => 'required',
+        ]);
     }
 }
