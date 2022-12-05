@@ -25,7 +25,7 @@
                         </div>
                     @enderror
                 </div>
-                
+            
                 <div class="mb-3">
                     <label class="form-label">Price</label>
                     <input type="number" name="price" class="form-control" placeholder="Enter product price" value="{{old('price')}}">

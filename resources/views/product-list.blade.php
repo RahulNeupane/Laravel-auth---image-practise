@@ -18,6 +18,22 @@
                 <h3>Welcome</h3>
             </div>
 
+
+            @auth
+                <a href="{{url('login')}}" class="p-2 nav-link">{{auth()->user()->name}}</a>
+            @endauth
+
+            <form action="{{url('logout')}}" method="get">
+                <button type="submit" class="btn btn-primary">Logout</button>
+            </form>
+
+            @guest
+                <div>
+                    <a href="{{url('login')}}" class="btn btn-outline-primary">Login</a>
+                    <a href="{{url('register')}}" class="btn btn-outline-secondary">Register</a>
+                </div>
+            @endguest
+
             <div>
                 <a href="{{ url('add-product') }}" class="btn btn-outline-primary rounded-pill"
                     style="margin-top: 39px;">Add Product</a>
