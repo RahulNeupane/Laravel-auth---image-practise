@@ -16,10 +16,14 @@ use App\Http\Controllers\ProductController;
 |
 */
 
+Route::get('/', function(){
+    return view('/login');
+});
+
 
 Route::get('product-list', [ProductController::class, 'productList'])->name('productList');
 
-Route::get('/', [ProductController::class, 'addProduct'])->middleware('auth');
+Route::get('add-product', [ProductController::class, 'addProduct'])->middleware('auth');
 
 Route::post('save-product', [ProductController::class, 'saveProduct'])->middleware('auth');
 

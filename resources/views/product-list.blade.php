@@ -23,9 +23,7 @@
                 <a href="{{url('login')}}" class="p-2 nav-link">{{auth()->user()->name}}</a>
             @endauth
 
-            <form action="{{url('logout')}}" method="get">
-                <button type="submit" class="btn btn-primary">Logout</button>
-            </form>
+            
 
             @guest
                 <div>
