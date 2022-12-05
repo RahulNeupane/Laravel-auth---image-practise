@@ -46,8 +46,9 @@ class ProductController extends Controller
 
     }
 
-    public function editProduct(){
-        return view('edit-product');
+    public function editProduct($id){
+        $data = Product::where('id', '=', $id)->first();
+        return view('edit-product', compact('data'));
     }
 
     public function updateProduct(Request $request){
@@ -58,5 +59,23 @@ class ProductController extends Controller
             'description' => 'required',
             'image' => 'required',
         ]);
+
+        $id = $request->id;
+        $name = $request->name;
+        $prodprice = $request->price;
+        $proddesp = $request->description;
+        $prodimage = $request->file('image')->getClientOriginalName();
+
+        // move uploaded file here
+        $request->image->move(public_path('images'), $prodimage);
+
+        Product::where('id', '=', $id)->update([
+            'name' => $name,
+            'prodprice' => $prodprice,
+            'proddesp' => $proddesp,
+            'prodimage' => $prodimage,
+        ]);
+
+        return redirect('/product-list')->with('success', 'Product Updated Successfully');
     }
 }

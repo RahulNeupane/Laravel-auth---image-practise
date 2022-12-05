@@ -14,12 +14,12 @@
                 <h2>Edit Product</h2>
             </div>
 
-            <form action="{{url('update-product')}}" method="post">
+            <form action="{{url('update-product')}}" method="post" enctype="multipart/form-data">
                 @csrf
-                
+                <input type="hidden" name="id" value="{{$data->id}}">
                 <div class="mb-3">
                     <label class="form-label">Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="Enter product name">
+                    <input type="text" name="name" class="form-control" placeholder="Enter product name" value="{{$data->name}}">
                      @error('name')
                         <div class="alert alert-danger" role="alert">
                             {{$message}}
@@ -29,7 +29,7 @@
                 
                 <div class="mb-3">
                     <label class="form-label">Price</label>
-                    <input type="number" name="price" class="form-control" placeholder="Enter product price">
+                    <input type="number" name="price" class="form-control" placeholder="Enter product price" value="{{$data->prodprice}}">
                      @error('price')
                         <div class="alert alert-danger" role="alert">
                             {{$message}}
@@ -39,7 +39,7 @@
 
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea name="description" class="form-control" placeholder="Enter product description"></textarea>
+                    <textarea name="description" class="form-control" placeholder="Enter product description">{{$data->proddesp}}</textarea>
                      @error('description')
                         <div class="alert alert-danger" role="alert">
                             {{$message}}
@@ -49,7 +49,7 @@
                 
                 <div class="mb-3">
                     <label class="form-label">Image</label>
-                    <input type="file" name="image" class="form-control">
+                    <input type="file" name="image" class="form-control" value="{{$data->prodimage}}">
                      @error('image')
                         <div class="alert alert-danger" role="alert">
                             {{$message}}
