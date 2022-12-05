@@ -31,7 +31,7 @@ class UserController extends Controller
         ]);
 
         if(Auth::attempt($request->only('email','password'))){
-            return redirect('/product-list');
+            return redirect()->route('product-list');
         }
         return back()->with('fail', 'email or password invalid !');
     }
