@@ -78,4 +78,10 @@ class ProductController extends Controller
 
         return redirect('/product-list')->with('success', 'Product Updated Successfully');
     }
+
+    public function deleteProduct($id){
+        Product::where('id', '=', $id)->delete();
+
+        return redirect('/product-list')->with('success', 'Product Deleted Successfully');
+    }
 }
