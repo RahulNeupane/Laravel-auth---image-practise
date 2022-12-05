@@ -29,7 +29,7 @@ Route::post('update-product', [ProductController::class, 'updateProduct']);
 
 Route::get('delete-product/{id}', [ProductController::class, 'deleteProduct']);
 
-Route::get('/', [HomeController::class, 'index'])->name('index')->middleware('auth');
+Route::get('/', [HomeController::class, 'productList'])->name('productList')->middleware('auth');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::post('/register-user', [UserController::class, 'registerUser'])->name('register-user');
