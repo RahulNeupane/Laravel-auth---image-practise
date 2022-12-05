@@ -8,7 +8,8 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     public function productList(){
-        return view('product-list');
+        $data = Product::all();
+        return view('product-list', compact('data'));
     }
 
     public function addProduct(){
@@ -23,6 +24,26 @@ class ProductController extends Controller
             'description' => 'required',
             'image' => 'required',
         ]);
+
+        $name = $request->name;
+        $prodprice = $request->price;
+        $proddesp = $request->description;
+        $prodimage = $request->file('image')->getClientOriginalName();
+
+
+        // move uploaded file here
+        $request->image->move(public_path('images'), $prodimage);
+
+        $product = new Product();
+        $product->name = $name;
+        $product->prodprice = $prodprice;
+        $product->proddesp = $proddesp;
+        $product->prodimage = $prodimage;
+
+        $product->save();
+
+        return redirect('/product-list')->with('success', 'New Product added successfully');
+
     }
 
     public function editProduct(){
