@@ -17,19 +17,18 @@ use App\Http\Controllers\ProductController;
 */
 
 
-Route::get('product-list', [ProductController::class, 'productList']);
+Route::get('product-list', [ProductController::class, 'productList'])->name('productList');
 
-Route::get('add-product', [ProductController::class, 'addProduct']);
+Route::get('/', [ProductController::class, 'addProduct'])->middleware('auth');
 
-Route::post('save-product', [ProductController::class, 'saveProduct']);
+Route::post('save-product', [ProductController::class, 'saveProduct'])->middleware('auth');
 
-Route::get('edit-product/{id}', [ProductController::class, 'editProduct']);
+Route::get('edit-product/{id}', [ProductController::class, 'editProduct'])->middleware('auth');
 
-Route::post('update-product', [ProductController::class, 'updateProduct']);
+Route::post('update-product', [ProductController::class, 'updateProduct'])->middleware('auth');
 
-Route::get('delete-product/{id}', [ProductController::class, 'deleteProduct']);
+Route::get('delete-product/{id}', [ProductController::class, 'deleteProduct'])->middleware('auth');
 
-Route::get('/', [HomeController::class, 'index'])->name('index')->middleware('auth');
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 Route::post('/register-user', [UserController::class, 'registerUser'])->name('register-user');
